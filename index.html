@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCast</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌤 SkyCast</h1>
+    <p id="currentDate"></p>
+  <p id="currentTime"></p>
+
+
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="cityInput"
+            placeholder="Enter City Name">
+
+        <button id="searchBtn">
+            Search
+        </button>
+
+    </div>
+
+    <p id="loading"></p>
+    <p id="error"></p>
+
+    <div id="weatherCard">
+
+        <img
+            id="weatherIcon"
+            src=""
+            alt="Weather Icon">
+
+        <h2 id="city">
+            City
+        </h2>
+
+        <h3 id="country">
+            Country
+        </h3>
+
+        <h1 id="temperature">
+            --°C
+        </h1>
+
+        <p id="weather">
+            Weather
+        </p>
+
+        <p>
+            🌡 Feels Like :
+            <span id="feelsLike">
+                --
+            </span>°C
+        </p>
+
+        <p>
+            🌅 Sunrise :
+            <span id="sunrise">
+                --
+            </span>
+        </p>
+
+        <p>
+            🌇 Sunset :
+            <span id="sunset">
+                --
+            </span>
+        </p>
+
+        <p>
+            💧 Humidity :
+            <span id="humidity">
+                --
+            </span>%
+        </p>
+
+        <p>
+            💨 Wind :
+            <span id="wind">
+                --
+            </span>
+            km/h
+        </p>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
