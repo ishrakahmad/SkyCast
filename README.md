@@ -2,18 +2,18 @@
 
 SkyCast is a responsive weather application built using HTML, CSS and JavaScript. It fetches real time weather information from the OpenWeather API.
 
-## ✨ Features
+## Features
 
-- 🔍 Search weather by city
+- 🌍 Search weather by city
+- 📍 Auto detect current location
 - 🌡 Current temperature
-- 🌤 Weather condition
+- 🤗 Feels like temperature
 - 💧 Humidity
 - 💨 Wind speed
-- 🌅 Sunrise & 🌇 Sunset
-- 🤒 Feels Like temperature
-- 📅 Live Date
-- 🕒 Live Clock
-- 📍 Current Location Weather (GPS)
+- 🌅 Sunrise & Sunset
+- 🕒 Live Date & Time
+- 🌙 Dark Mode
+- ⌨️ Search with Enter key
 - 📱 Responsive Design
 
 ## 🛠 Technologies Used
