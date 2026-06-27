@@ -10,94 +10,99 @@
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <h1>🌤 SkyCast</h1>
-    <p id="currentDate"></p>
-  <p id="currentTime"></p>
+        <h1>🌤 SkyCast</h1>
 
+        <!-- Date & Time -->
+        <div class="date-time">
+            <span id="currentDate"></span>
+            <span>|</span>
+            <span id="currentTime"></span>
+        </div>
 
+        <!-- Search -->
+        <div class="search-box">
 
-    <div class="search-box">
+            <input
+                type="text"
+                id="cityInput"
+                placeholder="Enter City Name">
 
-        <input
-            type="text"
-            id="cityInput"
-            placeholder="Enter City Name">
+            <button id="searchBtn" title="Search">
+                🔍
+            </button>
 
-        <button id="searchBtn">
-            Search
-        </button>
+            <button id="darkBtn" title="Dark Mode">
+                🌙
+            </button>
+
+        </div>
+
+        <!-- Loading -->
+        <p id="loading"></p>
+
+        <!-- Error -->
+        <p id="error"></p>
+
+        <!-- Weather Card -->
+        <div id="weatherCard">
+
+            <img
+                id="weatherIcon"
+                src=""
+                alt="Weather Icon">
+
+            <h2 id="city">
+                City
+            </h2>
+
+            <h3 id="country">
+                Country
+            </h3>
+
+            <h1 id="temperature">
+                --°C
+            </h1>
+
+            <p id="weather">
+                Weather
+            </p>
+
+            <div class="weather-info">
+
+                <p>
+                    🌡 Feels Like :
+                    <span id="feelsLike">--</span>°C
+                </p>
+
+                <p>
+                    🌅 Sunrise :
+                    <span id="sunrise">--</span>
+                </p>
+
+                <p>
+                    🌇 Sunset :
+                    <span id="sunset">--</span>
+                </p>
+
+                <p>
+                    💧 Humidity :
+                    <span id="humidity">--</span>%
+                </p>
+
+                <p>
+                    💨 Wind :
+                    <span id="wind">--</span> km/h
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
 
-    <p id="loading"></p>
-    <p id="error"></p>
-
-    <div id="weatherCard">
-
-        <img
-            id="weatherIcon"
-            src=""
-            alt="Weather Icon">
-
-        <h2 id="city">
-            City
-        </h2>
-
-        <h3 id="country">
-            Country
-        </h3>
-
-        <h1 id="temperature">
-            --°C
-        </h1>
-
-        <p id="weather">
-            Weather
-        </p>
-
-        <p>
-            🌡 Feels Like :
-            <span id="feelsLike">
-                --
-            </span>°C
-        </p>
-
-        <p>
-            🌅 Sunrise :
-            <span id="sunrise">
-                --
-            </span>
-        </p>
-
-        <p>
-            🌇 Sunset :
-            <span id="sunset">
-                --
-            </span>
-        </p>
-
-        <p>
-            💧 Humidity :
-            <span id="humidity">
-                --
-            </span>%
-        </p>
-
-        <p>
-            💨 Wind :
-            <span id="wind">
-                --
-            </span>
-            km/h
-        </p>
-
-    </div>
-
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 
