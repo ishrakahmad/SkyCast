@@ -52,8 +52,9 @@ async function getWeather() {
 
         loading.innerText = "";
         error.innerText = "";
-
+        getForecast(data.coord.lat, data.coord.lon);
         cityInput.value = "";
+        
 
     }
 
@@ -113,6 +114,12 @@ function displayWeather(data) {
     document.getElementById("weatherIcon").alt =
         data.weather[0].description;
 
+       
+        changeBackground(data.weather[0].main);    
+
+
+        
+
 }
 
 
@@ -141,11 +148,27 @@ setInterval(updateDateTime, 1000);
 
 window.onload = function () {
 
+    const theme = localStorage.getItem("theme");
+
+    if (theme === "dark") {
+
+        document.body.classList.add("dark");
+
+        darkBtn.innerHTML = "☀️";
+
+    }
+
+    else {
+
+        darkBtn.innerHTML = "🌙";
+
+    }
+
     cityInput.value = "Dhaka";
+
     getWeather();
 
 };
-
 
 // Current Location Weather
 
@@ -196,12 +219,242 @@ darkBtn.addEventListener("click", function () {
 
         darkBtn.innerHTML = "☀️";
 
+        localStorage.setItem("theme", "dark");
+
     }
 
     else {
 
         darkBtn.innerHTML = "🌙";
 
+        localStorage.setItem("theme", "light");
+
     }
 
 });
+
+function changeBackground(weather){
+
+    rainContainer.style.display="none";
+
+    const body = document.body;
+
+    const sun = document.querySelector(".sun");
+
+    const clouds = document.querySelectorAll(".cloud");
+    const rain = document.querySelector(".rain");
+    //  hide 
+    sun.style.display = "none";
+
+    clouds.forEach(cloud=>{
+        cloud.style.display = "none";
+    });
+
+    if(rain){
+
+        rain.style.display="none";
+    
+    }
+
+    body.classList.remove(
+        "clear-bg",
+        "cloud-bg",
+        "rain-bg",
+        "snow-bg",
+        "storm-bg",
+        "mist-bg",
+        "default-bg"
+    );
+
+    switch (weather) {
+
+        case "Clear":
+
+    body.classList.add("clear-bg");
+
+    sun.style.display = "block";
+
+    break;
+
+    case "Clouds":
+
+    body.classList.add("cloud-bg");
+
+    clouds.forEach(cloud=>{
+        cloud.style.display = "block";
+    });
+
+    break;
+
+    case "Rain":
+        case "Drizzle":
+        
+            body.classList.add("rain-bg");
+            rainContainer.style.display="block";
+        
+            if(rain){
+        
+                rain.style.display="block";
+        
+            }
+        
+            clouds.forEach(cloud=>{
+                cloud.style.display="block";
+            });
+        
+            break;
+
+        case "Snow":
+            body.classList.add("snow-bg");
+            break;
+
+        case "Thunderstorm":
+            body.classList.add("storm-bg");
+            break;
+
+        case "Mist":
+        case "Fog":
+        case "Haze":
+            body.classList.add("mist-bg");
+            break;
+
+        default:
+            body.classList.add("default-bg");
+    }
+}
+
+
+async function getForecast(lat, lon) {
+
+    const url =
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    displayForecast(data);
+
+}
+
+
+
+
+function displayForecast(data) {
+
+    const forecast =
+    document.getElementById("forecast");
+
+    forecast.innerHTML = "";
+
+    const days = {};
+
+    data.list.forEach(item => {
+
+        const date =
+        item.dt_txt.split(" ")[0];
+
+        if(!days[date]){
+
+            days[date] = item;
+
+        }
+
+    });
+
+    Object.values(days)
+    .slice(0,5)
+    .forEach(item=>{
+
+        const day =
+        new Date(item.dt_txt)
+        .toLocaleDateString("en-US",{
+            weekday:"short"
+        });
+
+        forecast.innerHTML += `
+        
+        <div class="forecast-card">
+
+            <h4>${day}</h4>
+
+            <img src="https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png">
+
+            <p>${Math.round(item.main.temp)}°C</p>
+
+        </div>
+
+        `;
+
+    });
+
+
+    function createRain(){
+
+        const rain=document.querySelector(".rain");
+    
+        rain.innerHTML="";
+    
+        for(let i=0;i<180;i++){
+    
+            const drop=document.createElement("div");
+    
+            drop.classList.add("drop");
+    
+            drop.style.left=Math.random()*100+"vw";
+    
+            drop.style.animationDuration=
+            .5+Math.random()*.6+"s";
+    
+            drop.style.animationDelay=
+            Math.random()*2+"s";
+    
+            drop.style.opacity=
+            Math.random();
+    
+            rain.appendChild(drop);
+    
+        }
+    
+    }
+    
+    createRain();
+
+}
+
+
+const rainContainer =
+document.getElementById("rain");
+
+function createRain(){
+
+    rainContainer.innerHTML="";
+
+    for(let i=0;i<450;i++){
+
+        const drop =
+        document.createElement("div");
+
+        drop.classList.add("drop");
+
+        drop.style.left =
+        Math.random()*100+"vw";
+
+        drop.style.height =
+        10+Math.random()*25+"px";
+
+        drop.style.animationDuration =
+        .5+Math.random()*1+"s";
+
+        drop.style.animationDelay =
+        Math.random()*2+"s";
+
+        drop.style.opacity =
+        .2+Math.random()*.8;
+
+        rainContainer.appendChild(drop);
+
+    }
+
+}
+
+createRain();
