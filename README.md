@@ -23,4 +23,4 @@ SkyCast is a responsive weather application built using HTML, CSS and JavaScript
 
 ## 🚀 Live Demo
 
-https://ishrakahmad.github.io/SkyCast/
+https://skycast.ishrakahmad.me/
